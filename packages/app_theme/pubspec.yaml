@@ -1,0 +1,24 @@
+name: app_theme
+description: AppTheme custom theme and ui
+publish_to: 'none'
+version: 0.1.1
+
+environment:
+  sdk: '>=2.19.0 <=3.8.1'
+dependencies:
+  flutter:
+    sdk: flutter
+  # Update this to version 8.0.0 or later for Flutter 3.24 compatibility
+  flex_color_scheme: ^8.2.0
+  # Easily access the MediaQuery sizing info directly on the build context
+  sized_context: ^1.0.0+4
+  flutter_screenutil: ^5.9.3
+  google_fonts: ^6.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
