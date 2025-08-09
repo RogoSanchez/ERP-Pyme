@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
+import 'package:pyme_erp/domain/di/di.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:trabajadores/domain/di/di.dart';
 
 Future<AuthResponse> CreateUser(String email, String password) async {
   try {

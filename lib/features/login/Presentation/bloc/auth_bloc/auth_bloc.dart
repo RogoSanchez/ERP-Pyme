@@ -4,9 +4,9 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:trabajadores/domain/di/di.dart';
-import 'package:trabajadores/features/login/data/repositories/autentication_repository.dart';
-import 'package:trabajadores/features/login/data/repositories/user_repository.dart';
+import 'package:pyme_erp/domain/di/di.dart';
+import 'package:pyme_erp/features/login/data/repositories/autentication_repository.dart';
+import 'package:pyme_erp/features/login/data/repositories/user_repository.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -17,7 +17,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required AuthenticationRepository authenticationRepository,
     required UserRepository userRepository,
   }) : _authenticationRepository = authenticationRepository,
-       _userRepository = userRepository,
        super(const AuthState.unknownState()) {
     on<_AuthenticationSubscriptionRequested>(_onSubscriptionRequested);
     on<_AuthenticationLogoutPressed>(_onLogoutPressed);
@@ -27,7 +26,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   final AuthenticationRepository _authenticationRepository;
-  final UserRepository _userRepository;
+
 
   Future<void> _onSubscriptionRequested(
     _AuthenticationSubscriptionRequested event,

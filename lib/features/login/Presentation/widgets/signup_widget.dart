@@ -2,8 +2,8 @@ import 'package:app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:trabajadores/features/login/Presentation/bloc/login_bloc/login_bloc.dart';
-import 'package:trabajadores/features/login/Presentation/widgets/login_tab.dart';
+import 'package:pyme_erp/features/login/Presentation/bloc/login_bloc/login_bloc.dart';
+import 'package:pyme_erp/features/login/Presentation/widgets/login_tab.dart';
 
 class SignUp extends StatelessWidget {
   SignUp({super.key});

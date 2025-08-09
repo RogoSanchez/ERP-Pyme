@@ -1,7 +1,7 @@
 import 'package:app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:trabajadores/features/human_resources/Presentation/card_widget.dart';
+
+import 'package:pyme_erp/features/human_resources/Presentation/card_widget.dart';
 
 class HumanResources extends StatelessWidget {
   const HumanResources({super.key});
@@ -10,10 +10,6 @@ class HumanResources extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(
-          color: AppColor.appBarTitle,
-          onPressed: () => GoRouter.of(context).go('/home'),
-        ),
         centerTitle: true,
         shape: AppBorder.AppBarBorder,
         actions: [

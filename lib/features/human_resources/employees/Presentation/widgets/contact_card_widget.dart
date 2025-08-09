@@ -2,7 +2,7 @@ import 'package:app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:trabajadores/features/human_resources/employees/domain/entities/employee.dart';
+import 'package:pyme_erp/features/human_resources/employees/domain/entities/employee.dart';
 
 class ContactWidget extends StatelessWidget {
   const ContactWidget({super.key, this.employeeImage, required this.employee});

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:trabajadores/domain/di/di.dart';
+import 'package:pyme_erp/domain/di/di.dart';
 
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }
 

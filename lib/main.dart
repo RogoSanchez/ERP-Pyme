@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:trabajadores/Presentation/screens/app.dart';
+import 'package:pyme_erp/Presentation/screens/app.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:trabajadores/domain/di/di.dart';
+import 'package:pyme_erp/domain/di/di.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

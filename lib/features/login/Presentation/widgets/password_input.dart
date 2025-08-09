@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:trabajadores/features/login/Presentation/bloc/login_bloc/login_bloc.dart';
+import 'package:pyme_erp/features/login/Presentation/bloc/login_bloc/login_bloc.dart';
 
 class PasswordInput extends StatelessWidget {
   const PasswordInput({super.key, required this.focusNode});

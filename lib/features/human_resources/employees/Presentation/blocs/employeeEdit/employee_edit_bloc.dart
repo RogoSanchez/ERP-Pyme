@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:trabajadores/features/human_resources/employees/data/datasources/implements/employee_repository_implements.dart';
-import 'package:trabajadores/features/human_resources/employees/domain/entities/employee.dart';
+import 'package:pyme_erp/features/human_resources/employees/data/datasources/implements/employee_repository_implements.dart';
+import 'package:pyme_erp/features/human_resources/employees/domain/entities/employee.dart';
 
 part 'employee_edit_event.dart';
 part 'employee_edit_state.dart';

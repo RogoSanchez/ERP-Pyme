@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:trabajadores/features/human_resources/employees/Presentation/blocs/employeeEdit/employee_edit_bloc.dart';
+import 'package:pyme_erp/features/human_resources/employees/Presentation/blocs/employeeEdit/employee_edit_bloc.dart';
 
 // ignore: must_be_immutable
 class CreateEmployee extends StatelessWidget {
   CreateEmployee({super.key, this.id});
   final String? id;
   TextEditingController _controllerName = TextEditingController();
-  TextEditingController _controllerWork = TextEditingController();
+  final TextEditingController _controllerWork = TextEditingController();
   TextEditingController _controllerPhone = TextEditingController();
   TextEditingController _controllerEmail = TextEditingController();
 

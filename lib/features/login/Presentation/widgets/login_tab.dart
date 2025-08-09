@@ -1,11 +1,10 @@
 import 'package:app_theme/ui/widgets/size_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:trabajadores/domain/network/Supabase/auth_supabase.dart';
-
-import 'package:trabajadores/features/login/Presentation/widgets/password_Input.dart';
-import 'package:trabajadores/features/login/Presentation/widgets/login_button.dart';
-import 'package:trabajadores/features/login/Presentation/widgets/username_input.dart';
+import 'package:pyme_erp/domain/network/Supabase/auth_supabase.dart';
+import 'package:pyme_erp/features/login/Presentation/widgets/password_input.dart';
+import 'package:pyme_erp/features/login/Presentation/widgets/login_button.dart';
+import 'package:pyme_erp/features/login/Presentation/widgets/username_input.dart';
 
 class LogIn extends StatelessWidget {
   LogIn({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
+import 'package:pyme_erp/features/human_resources/employees/data/datasources/implements/employee_repository_implements.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:trabajadores/features/human_resources/employees/data/datasources/implements/employee_repository_implements.dart';
 
 GetIt getIt = GetIt.instance;
 

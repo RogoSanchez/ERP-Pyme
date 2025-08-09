@@ -2,9 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:trabajadores/features/login/data/repositories/autentication_repository.dart';
-import 'package:trabajadores/features/login/domain/entities/formz/password.dart';
-import 'package:trabajadores/features/login/domain/entities/formz/username.dart';
+import 'package:pyme_erp/features/login/data/repositories/autentication_repository.dart';
+import 'package:pyme_erp/features/login/domain/entities/formz/password.dart';
+import 'package:pyme_erp/features/login/domain/entities/formz/username.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';

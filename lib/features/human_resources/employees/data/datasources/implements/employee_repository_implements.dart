@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:pyme_erp/features/human_resources/employees/data/datasources/employee_repository.dart';
+import 'package:pyme_erp/features/human_resources/employees/domain/entities/employee.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:trabajadores/features/human_resources/employees/data/datasources/employee_repository.dart';
-import 'package:trabajadores/features/human_resources/employees/domain/entities/employee.dart';
 
 class EmployeeRepositoryI implements EmployeeRepository {
   final supabase = GetIt.instance<SupabaseClient>();
@@ -51,5 +51,11 @@ class EmployeeRepositoryI implements EmployeeRepository {
     } catch (e) {
       debugPrint(e.toString());
     }
+  }
+
+  @override
+  Future<List<Employee>> FetchEmployeesByName(String name) async {
+    final response = await supabase.from('Employees').select().like('name', '%$name%');
+    return response.map((e) => Employee.fromJson(e)).toList();
   }
 }

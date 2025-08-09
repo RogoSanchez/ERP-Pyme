@@ -1,7 +1,7 @@
 import 'package:app_theme/ui/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:trabajadores/features/login/Presentation/widgets/login_tab.dart';
-import 'package:trabajadores/features/login/Presentation/widgets/signup_widget.dart';
+import 'package:pyme_erp/features/login/Presentation/widgets/login_tab.dart';
+import 'package:pyme_erp/features/login/Presentation/widgets/signup_widget.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

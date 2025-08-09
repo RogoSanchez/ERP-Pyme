@@ -27,7 +27,7 @@ class AppCard extends StatelessWidget {
       ),
       child: MaterialButton(
         shape: AppBorder.ContactBorder,
-        onPressed: () => GoRouter.of(context).go(route),
+        onPressed: () => GoRouter.of(context).push(route),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,

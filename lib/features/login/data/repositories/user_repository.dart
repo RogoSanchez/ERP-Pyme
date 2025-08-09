@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:trabajadores/domain/di/di.dart';
+import 'package:pyme_erp/domain/di/di.dart';
 
 class UserRepository {
   Future<User?> getUser() async {

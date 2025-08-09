@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:trabajadores/Presentation/screens/home_page.dart';
-import 'package:trabajadores/features/human_resources/Presentation/human_resources.dart';
-import 'package:trabajadores/features/human_resources/employees/Presentation/screen/create_employee_page.dart';
-import 'package:trabajadores/features/human_resources/employees/Presentation/screen/employees_page.dart';
-import 'package:trabajadores/features/login/Presentation/bloc/auth_bloc/auth_bloc.dart';
-import 'package:trabajadores/features/login/Presentation/Screen/login.dart';
+import 'package:pyme_erp/Presentation/screens/home_page.dart';
+import 'package:pyme_erp/features/human_resources/Presentation/human_resources.dart';
+import 'package:pyme_erp/features/human_resources/employees/Presentation/screen/create_employee_page.dart';
+import 'package:pyme_erp/features/human_resources/employees/Presentation/screen/employees_page.dart';
+import 'package:pyme_erp/features/login/Presentation/Screen/login.dart';
+import 'package:pyme_erp/features/login/Presentation/bloc/auth_bloc/auth_bloc.dart';
 
 class GoRouterRefreshStream extends ChangeNotifier {
   GoRouterRefreshStream(Stream<dynamic> stream) {
