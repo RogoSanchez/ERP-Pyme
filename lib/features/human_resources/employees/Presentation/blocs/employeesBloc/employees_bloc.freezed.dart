@@ -128,13 +128,13 @@ return searchEvent(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  getAllEvent,TResult Function( Employee employee)?  addingEvent,TResult Function()?  searchEvent,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  getAllEvent,TResult Function( Employee employee)?  addingEvent,TResult Function( String name)?  searchEvent,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _GetAll() when getAllEvent != null:
 return getAllEvent();case _AddingEmployee() when addingEvent != null:
 return addingEvent(_that.employee);case _SearchEmployee() when searchEvent != null:
-return searchEvent();case _:
+return searchEvent(_that.name);case _:
   return orElse();
 
 }
@@ -152,13 +152,13 @@ return searchEvent();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  getAllEvent,required TResult Function( Employee employee)  addingEvent,required TResult Function()  searchEvent,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  getAllEvent,required TResult Function( Employee employee)  addingEvent,required TResult Function( String name)  searchEvent,}) {final _that = this;
 switch (_that) {
 case _Started():
 return started();case _GetAll():
 return getAllEvent();case _AddingEmployee():
 return addingEvent(_that.employee);case _SearchEmployee():
-return searchEvent();case _:
+return searchEvent(_that.name);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -175,13 +175,13 @@ return searchEvent();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  getAllEvent,TResult? Function( Employee employee)?  addingEvent,TResult? Function()?  searchEvent,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  getAllEvent,TResult? Function( Employee employee)?  addingEvent,TResult? Function( String name)?  searchEvent,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _GetAll() when getAllEvent != null:
 return getAllEvent();case _AddingEmployee() when addingEvent != null:
 return addingEvent(_that.employee);case _SearchEmployee() when searchEvent != null:
-return searchEvent();case _:
+return searchEvent(_that.name);case _:
   return null;
 
 }
@@ -332,33 +332,67 @@ $EmployeeCopyWith<$Res> get employee {
 
 
 class _SearchEmployee implements EmployeesEvent {
-  const _SearchEmployee();
+  const _SearchEmployee(this.name);
   
 
+ final  String name;
 
-
+/// Create a copy of EmployeesEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SearchEmployeeCopyWith<_SearchEmployee> get copyWith => __$SearchEmployeeCopyWithImpl<_SearchEmployee>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SearchEmployee);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SearchEmployee&&(identical(other.name, name) || other.name == name));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,name);
 
 @override
 String toString() {
-  return 'EmployeesEvent.searchEvent()';
+  return 'EmployeesEvent.searchEvent(name: $name)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class _$SearchEmployeeCopyWith<$Res> implements $EmployeesEventCopyWith<$Res> {
+  factory _$SearchEmployeeCopyWith(_SearchEmployee value, $Res Function(_SearchEmployee) _then) = __$SearchEmployeeCopyWithImpl;
+@useResult
+$Res call({
+ String name
+});
 
 
+
+
+}
+/// @nodoc
+class __$SearchEmployeeCopyWithImpl<$Res>
+    implements _$SearchEmployeeCopyWith<$Res> {
+  __$SearchEmployeeCopyWithImpl(this._self, this._then);
+
+  final _SearchEmployee _self;
+  final $Res Function(_SearchEmployee) _then;
+
+/// Create a copy of EmployeesEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? name = null,}) {
+  return _then(_SearchEmployee(
+null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
 
 /// @nodoc
 mixin _$EmployeesState {
@@ -404,15 +438,16 @@ extension EmployeesStatePatterns on EmployeesState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( Loaded value)?  loaded,TResult Function( _Error value)?  error,TResult Function( _Adding value)?  adding,TResult Function( _Searching value)?  searching,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( Loaded value)?  loaded,TResult Function( _Error value)?  error,TResult Function( _Adding value)?  adding,TResult Function( Searching value)?  searching,TResult Function( Loading value)?  loading,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case Loaded() when loaded != null:
 return loaded(_that);case _Error() when error != null:
 return error(_that);case _Adding() when adding != null:
-return adding(_that);case _Searching() when searching != null:
-return searching(_that);case _:
+return adding(_that);case Searching() when searching != null:
+return searching(_that);case Loading() when loading != null:
+return loading(_that);case _:
   return orElse();
 
 }
@@ -430,15 +465,16 @@ return searching(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( Loaded value)  loaded,required TResult Function( _Error value)  error,required TResult Function( _Adding value)  adding,required TResult Function( _Searching value)  searching,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( Loaded value)  loaded,required TResult Function( _Error value)  error,required TResult Function( _Adding value)  adding,required TResult Function( Searching value)  searching,required TResult Function( Loading value)  loading,}){
 final _that = this;
 switch (_that) {
 case _Initial():
 return initial(_that);case Loaded():
 return loaded(_that);case _Error():
 return error(_that);case _Adding():
-return adding(_that);case _Searching():
-return searching(_that);case _:
+return adding(_that);case Searching():
+return searching(_that);case Loading():
+return loading(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -455,15 +491,16 @@ return searching(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( Loaded value)?  loaded,TResult? Function( _Error value)?  error,TResult? Function( _Adding value)?  adding,TResult? Function( _Searching value)?  searching,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( Loaded value)?  loaded,TResult? Function( _Error value)?  error,TResult? Function( _Adding value)?  adding,TResult? Function( Searching value)?  searching,TResult? Function( Loading value)?  loading,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case Loaded() when loaded != null:
 return loaded(_that);case _Error() when error != null:
 return error(_that);case _Adding() when adding != null:
-return adding(_that);case _Searching() when searching != null:
-return searching(_that);case _:
+return adding(_that);case Searching() when searching != null:
+return searching(_that);case Loading() when loading != null:
+return loading(_that);case _:
   return null;
 
 }
@@ -480,14 +517,15 @@ return searching(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( List<Employee> employees)?  loaded,TResult Function( String Error)?  error,TResult Function( Employee employee)?  adding,TResult Function()?  searching,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( List<Employee> employees)?  loaded,TResult Function( String Error)?  error,TResult Function( Employee employee)?  adding,TResult Function( List<Employee> employees)?  searching,TResult Function()?  loading,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case Loaded() when loaded != null:
 return loaded(_that.employees);case _Error() when error != null:
 return error(_that.Error);case _Adding() when adding != null:
-return adding(_that.employee);case _Searching() when searching != null:
-return searching();case _:
+return adding(_that.employee);case Searching() when searching != null:
+return searching(_that.employees);case Loading() when loading != null:
+return loading();case _:
   return orElse();
 
 }
@@ -505,14 +543,15 @@ return searching();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( List<Employee> employees)  loaded,required TResult Function( String Error)  error,required TResult Function( Employee employee)  adding,required TResult Function()  searching,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( List<Employee> employees)  loaded,required TResult Function( String Error)  error,required TResult Function( Employee employee)  adding,required TResult Function( List<Employee> employees)  searching,required TResult Function()  loading,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case Loaded():
 return loaded(_that.employees);case _Error():
 return error(_that.Error);case _Adding():
-return adding(_that.employee);case _Searching():
-return searching();case _:
+return adding(_that.employee);case Searching():
+return searching(_that.employees);case Loading():
+return loading();case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -529,14 +568,15 @@ return searching();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( List<Employee> employees)?  loaded,TResult? Function( String Error)?  error,TResult? Function( Employee employee)?  adding,TResult? Function()?  searching,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( List<Employee> employees)?  loaded,TResult? Function( String Error)?  error,TResult? Function( Employee employee)?  adding,TResult? Function( List<Employee> employees)?  searching,TResult? Function()?  loading,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case Loaded() when loaded != null:
 return loaded(_that.employees);case _Error() when error != null:
 return error(_that.Error);case _Adding() when adding != null:
-return adding(_that.employee);case _Searching() when searching != null:
-return searching();case _:
+return adding(_that.employee);case Searching() when searching != null:
+return searching(_that.employees);case Loading() when loading != null:
+return loading();case _:
   return null;
 
 }
@@ -792,8 +832,80 @@ $EmployeeCopyWith<$Res> get employee {
 /// @nodoc
 
 
-class _Searching implements EmployeesState {
-  const _Searching();
+class Searching implements EmployeesState {
+  const Searching(final  List<Employee> employees): _employees = employees;
+  
+
+ final  List<Employee> _employees;
+ List<Employee> get employees {
+  if (_employees is EqualUnmodifiableListView) return _employees;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_employees);
+}
+
+
+/// Create a copy of EmployeesState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SearchingCopyWith<Searching> get copyWith => _$SearchingCopyWithImpl<Searching>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Searching&&const DeepCollectionEquality().equals(other._employees, _employees));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_employees));
+
+@override
+String toString() {
+  return 'EmployeesState.searching(employees: $employees)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SearchingCopyWith<$Res> implements $EmployeesStateCopyWith<$Res> {
+  factory $SearchingCopyWith(Searching value, $Res Function(Searching) _then) = _$SearchingCopyWithImpl;
+@useResult
+$Res call({
+ List<Employee> employees
+});
+
+
+
+
+}
+/// @nodoc
+class _$SearchingCopyWithImpl<$Res>
+    implements $SearchingCopyWith<$Res> {
+  _$SearchingCopyWithImpl(this._self, this._then);
+
+  final Searching _self;
+  final $Res Function(Searching) _then;
+
+/// Create a copy of EmployeesState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? employees = null,}) {
+  return _then(Searching(
+null == employees ? _self._employees : employees // ignore: cast_nullable_to_non_nullable
+as List<Employee>,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class Loading implements EmployeesState {
+  const Loading();
   
 
 
@@ -803,7 +915,7 @@ class _Searching implements EmployeesState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Searching);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Loading);
 }
 
 
@@ -812,7 +924,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'EmployeesState.searching()';
+  return 'EmployeesState.loading()';
 }
 
 

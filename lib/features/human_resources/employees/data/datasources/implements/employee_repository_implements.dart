@@ -55,7 +55,11 @@ class EmployeeRepositoryI implements EmployeeRepository {
 
   @override
   Future<List<Employee>> FetchEmployeesByName(String name) async {
-    final response = await supabase.from('Employees').select().like('name', '%$name%');
+    final response = await supabase
+    .from('Employees')
+    .select()
+    .ilike('name', '%$name%',
+    );
     return response.map((e) => Employee.fromJson(e)).toList();
   }
 }
