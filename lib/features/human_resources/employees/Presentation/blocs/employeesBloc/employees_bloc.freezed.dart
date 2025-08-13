@@ -55,14 +55,16 @@ extension EmployeesEventPatterns on EmployeesEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _GetAll value)?  getAllEvent,TResult Function( _AddingEmployee value)?  addingEvent,TResult Function( _SearchEmployee value)?  searchEvent,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _GetAll value)?  getAllEvent,TResult Function( _AddingEmployee value)?  addingEvent,TResult Function( _Search value)?  searchEvent,TResult Function( _Mark value)?  markEmployee,TResult Function( _DeleteMarked value)?  deleteMarkedEvent,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started(_that);case _GetAll() when getAllEvent != null:
 return getAllEvent(_that);case _AddingEmployee() when addingEvent != null:
-return addingEvent(_that);case _SearchEmployee() when searchEvent != null:
-return searchEvent(_that);case _:
+return addingEvent(_that);case _Search() when searchEvent != null:
+return searchEvent(_that);case _Mark() when markEmployee != null:
+return markEmployee(_that);case _DeleteMarked() when deleteMarkedEvent != null:
+return deleteMarkedEvent(_that);case _:
   return orElse();
 
 }
@@ -80,14 +82,16 @@ return searchEvent(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _GetAll value)  getAllEvent,required TResult Function( _AddingEmployee value)  addingEvent,required TResult Function( _SearchEmployee value)  searchEvent,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _GetAll value)  getAllEvent,required TResult Function( _AddingEmployee value)  addingEvent,required TResult Function( _Search value)  searchEvent,required TResult Function( _Mark value)  markEmployee,required TResult Function( _DeleteMarked value)  deleteMarkedEvent,}){
 final _that = this;
 switch (_that) {
 case _Started():
 return started(_that);case _GetAll():
 return getAllEvent(_that);case _AddingEmployee():
-return addingEvent(_that);case _SearchEmployee():
-return searchEvent(_that);case _:
+return addingEvent(_that);case _Search():
+return searchEvent(_that);case _Mark():
+return markEmployee(_that);case _DeleteMarked():
+return deleteMarkedEvent(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -104,14 +108,16 @@ return searchEvent(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _GetAll value)?  getAllEvent,TResult? Function( _AddingEmployee value)?  addingEvent,TResult? Function( _SearchEmployee value)?  searchEvent,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _GetAll value)?  getAllEvent,TResult? Function( _AddingEmployee value)?  addingEvent,TResult? Function( _Search value)?  searchEvent,TResult? Function( _Mark value)?  markEmployee,TResult? Function( _DeleteMarked value)?  deleteMarkedEvent,}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started(_that);case _GetAll() when getAllEvent != null:
 return getAllEvent(_that);case _AddingEmployee() when addingEvent != null:
-return addingEvent(_that);case _SearchEmployee() when searchEvent != null:
-return searchEvent(_that);case _:
+return addingEvent(_that);case _Search() when searchEvent != null:
+return searchEvent(_that);case _Mark() when markEmployee != null:
+return markEmployee(_that);case _DeleteMarked() when deleteMarkedEvent != null:
+return deleteMarkedEvent(_that);case _:
   return null;
 
 }
@@ -128,13 +134,15 @@ return searchEvent(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  getAllEvent,TResult Function( Employee employee)?  addingEvent,TResult Function( String name)?  searchEvent,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  getAllEvent,TResult Function( Employee employee)?  addingEvent,TResult Function( String name)?  searchEvent,TResult Function( int idEmployee,  int idCard)?  markEmployee,TResult Function()?  deleteMarkedEvent,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _GetAll() when getAllEvent != null:
 return getAllEvent();case _AddingEmployee() when addingEvent != null:
-return addingEvent(_that.employee);case _SearchEmployee() when searchEvent != null:
-return searchEvent(_that.name);case _:
+return addingEvent(_that.employee);case _Search() when searchEvent != null:
+return searchEvent(_that.name);case _Mark() when markEmployee != null:
+return markEmployee(_that.idEmployee,_that.idCard);case _DeleteMarked() when deleteMarkedEvent != null:
+return deleteMarkedEvent();case _:
   return orElse();
 
 }
@@ -152,13 +160,15 @@ return searchEvent(_that.name);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  getAllEvent,required TResult Function( Employee employee)  addingEvent,required TResult Function( String name)  searchEvent,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  getAllEvent,required TResult Function( Employee employee)  addingEvent,required TResult Function( String name)  searchEvent,required TResult Function( int idEmployee,  int idCard)  markEmployee,required TResult Function()  deleteMarkedEvent,}) {final _that = this;
 switch (_that) {
 case _Started():
 return started();case _GetAll():
 return getAllEvent();case _AddingEmployee():
-return addingEvent(_that.employee);case _SearchEmployee():
-return searchEvent(_that.name);case _:
+return addingEvent(_that.employee);case _Search():
+return searchEvent(_that.name);case _Mark():
+return markEmployee(_that.idEmployee,_that.idCard);case _DeleteMarked():
+return deleteMarkedEvent();case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -175,13 +185,15 @@ return searchEvent(_that.name);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  getAllEvent,TResult? Function( Employee employee)?  addingEvent,TResult? Function( String name)?  searchEvent,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  getAllEvent,TResult? Function( Employee employee)?  addingEvent,TResult? Function( String name)?  searchEvent,TResult? Function( int idEmployee,  int idCard)?  markEmployee,TResult? Function()?  deleteMarkedEvent,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _GetAll() when getAllEvent != null:
 return getAllEvent();case _AddingEmployee() when addingEvent != null:
-return addingEvent(_that.employee);case _SearchEmployee() when searchEvent != null:
-return searchEvent(_that.name);case _:
+return addingEvent(_that.employee);case _Search() when searchEvent != null:
+return searchEvent(_that.name);case _Mark() when markEmployee != null:
+return markEmployee(_that.idEmployee,_that.idCard);case _DeleteMarked() when deleteMarkedEvent != null:
+return deleteMarkedEvent();case _:
   return null;
 
 }
@@ -331,8 +343,8 @@ $EmployeeCopyWith<$Res> get employee {
 /// @nodoc
 
 
-class _SearchEmployee implements EmployeesEvent {
-  const _SearchEmployee(this.name);
+class _Search implements EmployeesEvent {
+  const _Search(this.name);
   
 
  final  String name;
@@ -341,13 +353,13 @@ class _SearchEmployee implements EmployeesEvent {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$SearchEmployeeCopyWith<_SearchEmployee> get copyWith => __$SearchEmployeeCopyWithImpl<_SearchEmployee>(this, _$identity);
+_$SearchCopyWith<_Search> get copyWith => __$SearchCopyWithImpl<_Search>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SearchEmployee&&(identical(other.name, name) || other.name == name));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Search&&(identical(other.name, name) || other.name == name));
 }
 
 
@@ -363,8 +375,8 @@ String toString() {
 }
 
 /// @nodoc
-abstract mixin class _$SearchEmployeeCopyWith<$Res> implements $EmployeesEventCopyWith<$Res> {
-  factory _$SearchEmployeeCopyWith(_SearchEmployee value, $Res Function(_SearchEmployee) _then) = __$SearchEmployeeCopyWithImpl;
+abstract mixin class _$SearchCopyWith<$Res> implements $EmployeesEventCopyWith<$Res> {
+  factory _$SearchCopyWith(_Search value, $Res Function(_Search) _then) = __$SearchCopyWithImpl;
 @useResult
 $Res call({
  String name
@@ -375,17 +387,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$SearchEmployeeCopyWithImpl<$Res>
-    implements _$SearchEmployeeCopyWith<$Res> {
-  __$SearchEmployeeCopyWithImpl(this._self, this._then);
+class __$SearchCopyWithImpl<$Res>
+    implements _$SearchCopyWith<$Res> {
+  __$SearchCopyWithImpl(this._self, this._then);
 
-  final _SearchEmployee _self;
-  final $Res Function(_SearchEmployee) _then;
+  final _Search _self;
+  final $Res Function(_Search) _then;
 
 /// Create a copy of EmployeesEvent
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? name = null,}) {
-  return _then(_SearchEmployee(
+  return _then(_Search(
 null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -393,6 +405,106 @@ as String,
 
 
 }
+
+/// @nodoc
+
+
+class _Mark implements EmployeesEvent {
+  const _Mark(this.idEmployee, this.idCard);
+  
+
+ final  int idEmployee;
+ final  int idCard;
+
+/// Create a copy of EmployeesEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$MarkCopyWith<_Mark> get copyWith => __$MarkCopyWithImpl<_Mark>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Mark&&(identical(other.idEmployee, idEmployee) || other.idEmployee == idEmployee)&&(identical(other.idCard, idCard) || other.idCard == idCard));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,idEmployee,idCard);
+
+@override
+String toString() {
+  return 'EmployeesEvent.markEmployee(idEmployee: $idEmployee, idCard: $idCard)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$MarkCopyWith<$Res> implements $EmployeesEventCopyWith<$Res> {
+  factory _$MarkCopyWith(_Mark value, $Res Function(_Mark) _then) = __$MarkCopyWithImpl;
+@useResult
+$Res call({
+ int idEmployee, int idCard
+});
+
+
+
+
+}
+/// @nodoc
+class __$MarkCopyWithImpl<$Res>
+    implements _$MarkCopyWith<$Res> {
+  __$MarkCopyWithImpl(this._self, this._then);
+
+  final _Mark _self;
+  final $Res Function(_Mark) _then;
+
+/// Create a copy of EmployeesEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? idEmployee = null,Object? idCard = null,}) {
+  return _then(_Mark(
+null == idEmployee ? _self.idEmployee : idEmployee // ignore: cast_nullable_to_non_nullable
+as int,null == idCard ? _self.idCard : idCard // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _DeleteMarked implements EmployeesEvent {
+  const _DeleteMarked();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DeleteMarked);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'EmployeesEvent.deleteMarkedEvent()';
+}
+
+
+}
+
+
+
 
 /// @nodoc
 mixin _$EmployeesState {
@@ -438,16 +550,17 @@ extension EmployeesStatePatterns on EmployeesState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( Loaded value)?  loaded,TResult Function( _Error value)?  error,TResult Function( _Adding value)?  adding,TResult Function( Searching value)?  searching,TResult Function( Loading value)?  loading,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( Loaded value)?  loadedState,TResult Function( _Error value)?  errorState,TResult Function( _Adding value)?  addingState,TResult Function( Searching value)?  searchingState,TResult Function( Loading value)?  loadingState,TResult Function( Deleting value)?  deleting,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial(_that);case Loaded() when loaded != null:
-return loaded(_that);case _Error() when error != null:
-return error(_that);case _Adding() when adding != null:
-return adding(_that);case Searching() when searching != null:
-return searching(_that);case Loading() when loading != null:
-return loading(_that);case _:
+return initial(_that);case Loaded() when loadedState != null:
+return loadedState(_that);case _Error() when errorState != null:
+return errorState(_that);case _Adding() when addingState != null:
+return addingState(_that);case Searching() when searchingState != null:
+return searchingState(_that);case Loading() when loadingState != null:
+return loadingState(_that);case Deleting() when deleting != null:
+return deleting(_that);case _:
   return orElse();
 
 }
@@ -465,16 +578,17 @@ return loading(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( Loaded value)  loaded,required TResult Function( _Error value)  error,required TResult Function( _Adding value)  adding,required TResult Function( Searching value)  searching,required TResult Function( Loading value)  loading,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( Loaded value)  loadedState,required TResult Function( _Error value)  errorState,required TResult Function( _Adding value)  addingState,required TResult Function( Searching value)  searchingState,required TResult Function( Loading value)  loadingState,required TResult Function( Deleting value)  deleting,}){
 final _that = this;
 switch (_that) {
 case _Initial():
 return initial(_that);case Loaded():
-return loaded(_that);case _Error():
-return error(_that);case _Adding():
-return adding(_that);case Searching():
-return searching(_that);case Loading():
-return loading(_that);case _:
+return loadedState(_that);case _Error():
+return errorState(_that);case _Adding():
+return addingState(_that);case Searching():
+return searchingState(_that);case Loading():
+return loadingState(_that);case Deleting():
+return deleting(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -491,16 +605,17 @@ return loading(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( Loaded value)?  loaded,TResult? Function( _Error value)?  error,TResult? Function( _Adding value)?  adding,TResult? Function( Searching value)?  searching,TResult? Function( Loading value)?  loading,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( Loaded value)?  loadedState,TResult? Function( _Error value)?  errorState,TResult? Function( _Adding value)?  addingState,TResult? Function( Searching value)?  searchingState,TResult? Function( Loading value)?  loadingState,TResult? Function( Deleting value)?  deleting,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial(_that);case Loaded() when loaded != null:
-return loaded(_that);case _Error() when error != null:
-return error(_that);case _Adding() when adding != null:
-return adding(_that);case Searching() when searching != null:
-return searching(_that);case Loading() when loading != null:
-return loading(_that);case _:
+return initial(_that);case Loaded() when loadedState != null:
+return loadedState(_that);case _Error() when errorState != null:
+return errorState(_that);case _Adding() when addingState != null:
+return addingState(_that);case Searching() when searchingState != null:
+return searchingState(_that);case Loading() when loadingState != null:
+return loadingState(_that);case Deleting() when deleting != null:
+return deleting(_that);case _:
   return null;
 
 }
@@ -517,15 +632,16 @@ return loading(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( List<Employee> employees)?  loaded,TResult Function( String Error)?  error,TResult Function( Employee employee)?  adding,TResult Function( List<Employee> employees)?  searching,TResult Function()?  loading,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( List<Employee> employees)?  loadedState,TResult Function( String Error)?  errorState,TResult Function( Employee employee)?  addingState,TResult Function( List<Employee> employees)?  searchingState,TResult Function()?  loadingState,TResult Function( List<Employee> employees)?  deleting,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial();case Loaded() when loaded != null:
-return loaded(_that.employees);case _Error() when error != null:
-return error(_that.Error);case _Adding() when adding != null:
-return adding(_that.employee);case Searching() when searching != null:
-return searching(_that.employees);case Loading() when loading != null:
-return loading();case _:
+return initial();case Loaded() when loadedState != null:
+return loadedState(_that.employees);case _Error() when errorState != null:
+return errorState(_that.Error);case _Adding() when addingState != null:
+return addingState(_that.employee);case Searching() when searchingState != null:
+return searchingState(_that.employees);case Loading() when loadingState != null:
+return loadingState();case Deleting() when deleting != null:
+return deleting(_that.employees);case _:
   return orElse();
 
 }
@@ -543,15 +659,16 @@ return loading();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( List<Employee> employees)  loaded,required TResult Function( String Error)  error,required TResult Function( Employee employee)  adding,required TResult Function( List<Employee> employees)  searching,required TResult Function()  loading,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( List<Employee> employees)  loadedState,required TResult Function( String Error)  errorState,required TResult Function( Employee employee)  addingState,required TResult Function( List<Employee> employees)  searchingState,required TResult Function()  loadingState,required TResult Function( List<Employee> employees)  deleting,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case Loaded():
-return loaded(_that.employees);case _Error():
-return error(_that.Error);case _Adding():
-return adding(_that.employee);case Searching():
-return searching(_that.employees);case Loading():
-return loading();case _:
+return loadedState(_that.employees);case _Error():
+return errorState(_that.Error);case _Adding():
+return addingState(_that.employee);case Searching():
+return searchingState(_that.employees);case Loading():
+return loadingState();case Deleting():
+return deleting(_that.employees);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -568,15 +685,16 @@ return loading();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( List<Employee> employees)?  loaded,TResult? Function( String Error)?  error,TResult? Function( Employee employee)?  adding,TResult? Function( List<Employee> employees)?  searching,TResult? Function()?  loading,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( List<Employee> employees)?  loadedState,TResult? Function( String Error)?  errorState,TResult? Function( Employee employee)?  addingState,TResult? Function( List<Employee> employees)?  searchingState,TResult? Function()?  loadingState,TResult? Function( List<Employee> employees)?  deleting,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial();case Loaded() when loaded != null:
-return loaded(_that.employees);case _Error() when error != null:
-return error(_that.Error);case _Adding() when adding != null:
-return adding(_that.employee);case Searching() when searching != null:
-return searching(_that.employees);case Loading() when loading != null:
-return loading();case _:
+return initial();case Loaded() when loadedState != null:
+return loadedState(_that.employees);case _Error() when errorState != null:
+return errorState(_that.Error);case _Adding() when addingState != null:
+return addingState(_that.employee);case Searching() when searchingState != null:
+return searchingState(_that.employees);case Loading() when loadingState != null:
+return loadingState();case Deleting() when deleting != null:
+return deleting(_that.employees);case _:
   return null;
 
 }
@@ -650,7 +768,7 @@ int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(
 
 @override
 String toString() {
-  return 'EmployeesState.loaded(employees: $employees)';
+  return 'EmployeesState.loadedState(employees: $employees)';
 }
 
 
@@ -716,7 +834,7 @@ int get hashCode => Object.hash(runtimeType,Error);
 
 @override
 String toString() {
-  return 'EmployeesState.error(Error: $Error)';
+  return 'EmployeesState.errorState(Error: $Error)';
 }
 
 
@@ -782,7 +900,7 @@ int get hashCode => Object.hash(runtimeType,employee);
 
 @override
 String toString() {
-  return 'EmployeesState.adding(employee: $employee)';
+  return 'EmployeesState.addingState(employee: $employee)';
 }
 
 
@@ -863,7 +981,7 @@ int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(
 
 @override
 String toString() {
-  return 'EmployeesState.searching(employees: $employees)';
+  return 'EmployeesState.searchingState(employees: $employees)';
 }
 
 
@@ -924,7 +1042,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'EmployeesState.loading()';
+  return 'EmployeesState.loadingState()';
 }
 
 
@@ -932,5 +1050,77 @@ String toString() {
 
 
 
+
+/// @nodoc
+
+
+class Deleting implements EmployeesState {
+  const Deleting(final  List<Employee> employees): _employees = employees;
+  
+
+ final  List<Employee> _employees;
+ List<Employee> get employees {
+  if (_employees is EqualUnmodifiableListView) return _employees;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_employees);
+}
+
+
+/// Create a copy of EmployeesState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$DeletingCopyWith<Deleting> get copyWith => _$DeletingCopyWithImpl<Deleting>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Deleting&&const DeepCollectionEquality().equals(other._employees, _employees));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_employees));
+
+@override
+String toString() {
+  return 'EmployeesState.deleting(employees: $employees)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $DeletingCopyWith<$Res> implements $EmployeesStateCopyWith<$Res> {
+  factory $DeletingCopyWith(Deleting value, $Res Function(Deleting) _then) = _$DeletingCopyWithImpl;
+@useResult
+$Res call({
+ List<Employee> employees
+});
+
+
+
+
+}
+/// @nodoc
+class _$DeletingCopyWithImpl<$Res>
+    implements $DeletingCopyWith<$Res> {
+  _$DeletingCopyWithImpl(this._self, this._then);
+
+  final Deleting _self;
+  final $Res Function(Deleting) _then;
+
+/// Create a copy of EmployeesState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? employees = null,}) {
+  return _then(Deleting(
+null == employees ? _self._employees : employees // ignore: cast_nullable_to_non_nullable
+as List<Employee>,
+  ));
+}
+
+
+}
 
 // dart format on

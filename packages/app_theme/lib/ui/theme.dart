@@ -7,6 +7,12 @@ class AppBorder {
       bottomRight: Radius.circular(10),
     ),
   );
+  static final dynamic NavBarBorder = RoundedRectangleBorder(
+    borderRadius: BorderRadiusGeometry.only(
+      topLeft: Radius.circular(10),
+      topRight: Radius.circular(10),
+    ),
+  );
 
   static final BorderRadiusGeometry AppBoxBorder = BorderRadius.circular(20);
 

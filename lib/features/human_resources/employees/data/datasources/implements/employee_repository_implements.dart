@@ -56,10 +56,14 @@ class EmployeeRepositoryI implements EmployeeRepository {
   @override
   Future<List<Employee>> FetchEmployeesByName(String name) async {
     final response = await supabase
-    .from('Employees')
-    .select()
-    .ilike('name', '%$name%',
-    );
+        .from('Employees')
+        .select()
+        .ilike('name', '%$name%');
     return response.map((e) => Employee.fromJson(e)).toList();
+  }
+
+  @override
+  Future<void> Delete(int id) async {
+    await supabase.from('Employees').delete().eq('id', id);
   }
 }

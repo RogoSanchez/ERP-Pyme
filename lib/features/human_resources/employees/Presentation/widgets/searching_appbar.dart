@@ -1,6 +1,4 @@
 import 'package:app_theme/app_theme.dart';
-import 'package:app_theme/ui/colors.dart';
-import 'package:app_theme/ui/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,19 +17,14 @@ class SearchingAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: AppColor.appBarBackground,
 
       shape: AppBorder.AppBarBorder,
-      
+
       actions: [
         SizedBox(
           width: 0.7.sw,
           child: TextField(
-            style: AppTextStyle().appBarTitle.copyWith(
-              fontSize: 20.sp
-            ),
+            style: AppTextStyle().appBarTitle.copyWith(fontSize: 20.sp),
             decoration: InputDecoration(
-              hint: Text("Buscar",
-              
-              style: AppTextStyle().appBarTitle)
-              
+              hint: Text("Buscar", style: AppTextStyle().appBarTitle),
             ),
             controller: seeker,
             onChanged: (value) => context.read<EmployeesBloc>().add(

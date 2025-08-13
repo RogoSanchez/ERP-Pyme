@@ -6,4 +6,5 @@ abstract class EmployeeRepository {
   Future<dynamic> GetBy(int id);
   Future<List<Employee>> FetchEmployeesByName(String name);
   Future<void> UpdateInfo(String id, String name, String phone, String email);
+  Future<void> Delete(int id);
 }

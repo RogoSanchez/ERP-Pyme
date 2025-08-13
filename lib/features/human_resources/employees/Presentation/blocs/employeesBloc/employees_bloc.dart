@@ -12,30 +12,72 @@ class EmployeesBloc extends Bloc<EmployeesEvent, EmployeesState> {
   EmployeesBloc() : super(EmployeesState.initial()) {
     on<_GetAll>((event, emit) async {
       try {
+        emit(Loading());
         employees = await getEmployees();
         employees.sort(
-          (a, b) => (a.name.codeUnitAt(0).compareTo(b.name.codeUnitAt(0))),
+          (a, b) => (a.name.toLowerCase().compareTo(b.name.toLowerCase())),
         );
+        await SelectedListToFalse();
+
         emit(Loaded(employees));
       } catch (e) {
         rethrow;
       }
     });
-    on<_SearchEmployee>((event, emit) async {
-      employees = await supabaseRepository.FetchEmployeesByName(event.name);
+    on<_Search>((event, emit) async {
+      employees = await employeeRepository.FetchEmployeesByName(event.name);
       employees.sort(
-          (a, b) => (a.name.codeUnitAt(0).compareTo(b.name.codeUnitAt(0))),
-        );
+        (a, b) => (a.name.codeUnitAt(0).compareTo(b.name.codeUnitAt(0))),
+      );
       emit(Loading());
       emit(Searching(employees));
     });
+    on<_Mark>((event, emit) async {
+      bool noMarked = true;
+      selectedCard[event.idCard] = !selectedCard[event.idCard];
+      emit(EmployeesState.initial());
+      for (var element in selectedCard) {
+        if (element) {
+          noMarked = false;
+        }
+      }
+      if (noMarked) {
+        emit(Loaded(employees));
+      } else {
+        emit(Deleting(employees));
+      }
+    });
+    on<_DeleteMarked>((event, emit) async {
+      await DeleteEmployee();
+      try {
+        employees = await getEmployees();
+        employees.sort(
+          (a, b) => (a.name.codeUnitAt(0).compareTo(b.name.codeUnitAt(0))),
+        );
+        SelectedListToFalse();
+        emit(Loaded(employees));
+      } catch (e) {}
+    });
   }
 
-  EmployeeRepositoryI supabaseRepository = EmployeeRepositoryI();
+  EmployeeRepositoryI employeeRepository = EmployeeRepositoryI();
   List<Employee> employees = [];
+  List<bool> selectedCard = [];
 
   Future<List<Employee>> getEmployees() async {
     debugPrint("Fetching Employees");
-    return await supabaseRepository.FetchAllEmployee();
+    return await employeeRepository.FetchAllEmployee();
+  }
+
+  Future<void> DeleteEmployee() async {
+    for (var i = 0; i < selectedCard.length; i++) {
+      if (selectedCard[i]) {
+        await employeeRepository.Delete(employees[i].id!);
+      }
+    }
+  }
+
+  Future<void> SelectedListToFalse() async {
+    selectedCard = List.filled(employees.length, false);
   }
 }

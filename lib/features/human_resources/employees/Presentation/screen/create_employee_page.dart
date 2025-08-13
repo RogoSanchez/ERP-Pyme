@@ -54,16 +54,15 @@ class CreateEmployee extends StatelessWidget {
                     );
                     
                   } else {
-                    context.read<EmployeeEditBloc>().add(
-                      EmployeeEditEvent.saveContact(
+                    context.read<EmployeeEditBloc>().Insert(
                         _controllerName.text,
                         _controllerPhone.text,
                         _controllerEmail.text,
-                      ),
+                      
                     );
                   }
 
-                  GoRouter.of(context).go('/employees');
+                  GoRouter.of(context).pop('/employees');
                 },
                 icon: Icon(Icons.save),
                 color: AppColor.appBarTitle,
