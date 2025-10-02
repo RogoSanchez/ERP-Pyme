@@ -52,13 +52,11 @@ class CreateEmployee extends StatelessWidget {
                       _controllerPhone.text,
                       _controllerEmail.text,
                     );
-                    
                   } else {
                     context.read<EmployeeEditBloc>().Insert(
-                        _controllerName.text,
-                        _controllerPhone.text,
-                        _controllerEmail.text,
-                      
+                      _controllerName.text,
+                      _controllerPhone.text,
+                      _controllerEmail.text,
                     );
                   }
 

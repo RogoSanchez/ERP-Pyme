@@ -33,13 +33,11 @@ class LoginButton extends StatelessWidget {
           width: double.infinity,
           child: ElevatedButton(
             key: const Key('loginForm_continue_raisedButton'),
-            onPressed: state.isValid
-                ? () {
+            onPressed:() {
                     context.read<LoginBloc>().add(
                       const LoginEvent.loginSubmitted(),
                     );
-                  }
-                : null,
+                  },
             style: ElevatedButton.styleFrom(
               side: BorderSide(
                 color: Theme.of(context).colorScheme.primary,

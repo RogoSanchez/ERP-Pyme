@@ -7,7 +7,7 @@ class AppColor {
   final BuildContext context;
   AppColor(this.context);
   // Colores principales
-  static const primary = Color(0xFF1E4F91); // Azul profundo (tu primario)
+  static const primary =Color.fromARGB(155, 19, 8, 223); // Azul profundo (tu primario)
   static const secondary = Color(0xFF1E9178); // Verde azulado (tu secundario)
 
   static const celeste = Color.fromARGB(255, 105, 206, 231);
@@ -17,7 +17,7 @@ class AppColor {
   static const white = Color(0xFFFFFFFF);
   static const black = Color(0xFF222222);
   static const grayLight = Color(0xFFF5F6F8);
-  static const gray = Color(0xFFB0B4BA);
+  static const cardSlected = Color.fromARGB(255, 162, 195, 235);
   static const grayDark = Color(0xFF6B7280);
   static const background = Color.fromARGB(255, 255, 255, 255);
   static const card = Color(0xFFFFFFFF);
@@ -49,14 +49,14 @@ class AppColor {
   static Color get appBarBackground => primary;
   static Color get appBarTitle => white;
 
-  static Color get scaffoldBackground => const Color.fromARGB(158, 231, 231, 231);
+  static Color get scaffoldBackground =>
+      const Color.fromARGB(158, 231, 231, 231);
   static Color get cardBackground => const Color.fromARGB(255, 255, 255, 255);
   static Color get borderColor => border;
 
   static Color get iconPrimary => black;
   static Color get textSecondary => grayDark;
-  static Color get textHint => gray;
-
+  static Color get textHint => cardSlected;
 
   static Color get divider => border;
 
@@ -97,6 +97,4 @@ class AppColor {
 
   static Color get buttonTextSecondary =>
       const Color.fromRGBO(63, 138, 224, 1.0);
-
-  
 }

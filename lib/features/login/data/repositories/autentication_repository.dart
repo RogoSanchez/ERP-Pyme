@@ -68,6 +68,34 @@ class AuthenticationRepository {
     }
   }
 
+  Future<void> signUp({required String email, required String password}) async {
+    try {
+      final AuthResponse res = await supabase.auth.signUp(
+        email: email,
+        password: password,
+      );
+      if (res.user != null) {
+        debugPrint(
+          'AuthenticationRepository: Sign up successful, emitting authenticated',
+        );
+        _currentStatus = AuthenticationStatus.authenticated;
+        _controller.add(_currentStatus);
+      } else {
+        debugPrint(
+          'AuthenticationRepository: Sign up failed, no user returned',
+        );
+        _currentStatus = AuthenticationStatus.unauthenticated;
+        _controller.add(_currentStatus);
+        throw Exception('Sign up failed: No user returned');
+      }
+    } catch (e) {
+      debugPrint('AuthenticationRepository: Sign up error: $e');
+      _currentStatus = AuthenticationStatus.unauthenticated;
+      _controller.add(_currentStatus);
+      rethrow;
+    }
+  }
+
   void logOut() {
     _currentStatus = AuthenticationStatus.unauthenticated;
     _controller.add(_currentStatus);

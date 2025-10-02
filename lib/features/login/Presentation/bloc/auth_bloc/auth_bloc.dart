@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:pyme_erp/domain/di/di.dart';
 import 'package:pyme_erp/features/login/data/repositories/autentication_repository.dart';
 import 'package:pyme_erp/features/login/data/repositories/user_repository.dart';
 
@@ -21,37 +20,32 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<_AuthenticationSubscriptionRequested>(_onSubscriptionRequested);
     on<_AuthenticationLogoutPressed>(_onLogoutPressed);
 
-    // Disparar el evento inmediatamente
+    // Iniciar suscripción automáticamente
     add(const AuthEvent.authenticationSubscriptionRequested());
   }
 
   final AuthenticationRepository _authenticationRepository;
-
 
   Future<void> _onSubscriptionRequested(
     _AuthenticationSubscriptionRequested event,
     Emitter<AuthState> emit,
   ) async {
     debugPrint('Subscribing to authentication status');
+
     await emit.forEach(
       _authenticationRepository.status,
       onData: (AuthenticationStatus status) {
         debugPrint('AuthBloc: Processing status: $status');
         switch (status) {
           case AuthenticationStatus.unauthenticated:
-            debugPrint('Processing unauthenticated status');
             return const AuthState.unauthenticated();
           case AuthenticationStatus.authenticated:
-            debugPrint('Processing authenticated status');
             final user = _tryGetUser();
             if (user != null) {
-              debugPrint('User found: ${user.id}');
               return AuthState.authenticated(user: user);
             }
-            debugPrint('No user found after authenticated status');
             return const AuthState.unauthenticated();
           case AuthenticationStatus.unknown:
-            debugPrint('Processing unknown status');
             return const AuthState.unknownState();
         }
       },
@@ -60,9 +54,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   User? _tryGetUser() {
     try {
-      return supabase.auth.currentUser;
-    } catch (e) {
-      debugPrint('Error getting user: $e');
+      final currentUser = Supabase.instance.client.auth.currentUser;
+      return currentUser;
+    } catch (_) {
       return null;
     }
   }
@@ -70,8 +64,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   void _onLogoutPressed(
     _AuthenticationLogoutPressed event,
     Emitter<AuthState> emit,
-  ) {
-    unawaited(supabase.auth.signOut());
-    _authenticationRepository.logOut();
+  ) async {
+    await Supabase.instance.client.auth.signOut();
+    emit(AuthState.unauthenticated());
   }
 }

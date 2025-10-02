@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:pyme_erp/features/human_resources/employees/Presentation/blocs/employeesBloc/employees_bloc.dart';
 import 'package:pyme_erp/features/human_resources/employees/domain/entities/employee.dart';
 
+// ignore: must_be_immutable
 class ContactWidget extends StatelessWidget {
   ContactWidget({
     super.key,
@@ -29,7 +30,7 @@ class ContactWidget extends StatelessWidget {
       height: 0.105.sh,
       width: 0.65.sw,
       decoration: BoxDecoration(
-        color: (!SelectedCard) ? AppColor.background : AppColor.gray,
+        color: (!SelectedCard) ? AppColor.background : AppColor.cardSlected,
         borderRadius: AppBorder.AppBoxBorder,
       ),
       child: MaterialButton(

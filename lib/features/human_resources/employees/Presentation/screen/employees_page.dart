@@ -75,15 +75,12 @@ class EmployeesPage extends StatelessWidget {
                     },
                   )
                 : (state is Loading)
-                ?  Center(
-                  child: CircularProgressIndicator(),
-                )
+                ? Center(child: CircularProgressIndicator())
                 : SizedBox.shrink(),
           ),
           bottomNavigationBar: (state is Deleting)
               ? SizedBox(
-                
-                  height: 0.1.sh,
+                  height: 0.07.sh,
                   child: MaterialButton(
                     shape: AppBorder.NavBarBorder,
                     color: AppColor.appBarBackground,
@@ -92,8 +89,7 @@ class EmployeesPage extends StatelessWidget {
                         EmployeesEvent.deleteMarkedEvent(),
                       );
                     },
-                    child: Text("Borrar",
-                    style: AppTextStyle().appBarTitle,),
+                    child: Text("Borrar", style: AppTextStyle().appBarTitle),
                   ),
                 )
               : SizedBox.shrink(),

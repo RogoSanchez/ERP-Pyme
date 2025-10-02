@@ -14,4 +14,7 @@ abstract class AuthState with _$AuthState {
   const factory AuthState.unauthenticated({
     @Default(AuthenticationStatus.unauthenticated) AuthenticationStatus status,
   }) = Unauthenticated;
+  const factory AuthState.error({
+    @Default(AuthenticationStatus.unauthenticated) AuthenticationStatus status,
+  }) = Error;
 }

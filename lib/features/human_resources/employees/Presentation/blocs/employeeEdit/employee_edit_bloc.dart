@@ -15,7 +15,6 @@ class EmployeeEditBloc extends Bloc<EmployeeEditEvent, EmployeeEditState> {
       emit(EmployeeEditState.initial());
     });
 
-    
     on<_EditContact>((event, emit) async {
       try {
         emit(LoadingInfo());
@@ -31,22 +30,15 @@ class EmployeeEditBloc extends Bloc<EmployeeEditEvent, EmployeeEditState> {
     final Employee employee = await supabaseRepository.GetBy(id);
     return employee;
   }
-  Future<void>Insert(String name,String phone, String email) async {
 
-    Employee newEmployee = Employee(
-        name: name,
-        phone: phone,
-        email: email,
-      );
-      try {
-        await supabaseRepository.InsertEmployee(newEmployee);
-      } catch (e) {
-        rethrow;
-      }
-      
-      
-      
+  Future<void> Insert(String name, String phone, String email) async {
+    Employee newEmployee = Employee(name: name, phone: phone, email: email);
+    try {
+      await supabaseRepository.InsertEmployee(newEmployee);
+    } catch (e) {
+      rethrow;
     }
+  }
 
   Future<void> UpdateEmployee(
     String id,

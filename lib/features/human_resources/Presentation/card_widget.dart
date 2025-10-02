@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+// ignore: must_be_immutable
 class AppCard extends StatelessWidget {
   AppCard({
     super.key,

@@ -59,17 +59,15 @@ class AppTextStyle {
   TextStyle get onboardSubTitle => _default.copyWith(
         fontSize: 20,
         fontWeight: FontWeight.w400,
-        
         height: 1.3,
       );
 
   TextStyle get appBarTitle => _default.copyWith(
-        fontSize: 22.h,
-        fontWeight: FontWeight.w700,
-        letterSpacing: 0,
-        height: 1.3,
-        color: AppColor.appBarTitle
-      );
+      fontSize: 22.h,
+      fontWeight: FontWeight.w700,
+      letterSpacing: 0,
+      height: 1.3,
+      color: AppColor.appBarTitle);
 
   TextStyle get tableTitle => _default.copyWith(
         fontSize: 15,
@@ -320,21 +318,24 @@ class AppTextStyle {
         fontSize: 10,
       );
 
-  static TextStyle get a10600Gray => a10600.copyWith(color: AppColor.gray);
+  static TextStyle get a10600Gray =>
+      a10600.copyWith(color: AppColor.cardSlected);
 
   static TextStyle get a10700 => a.copyWith(
         fontWeight: FontWeight.w700,
         fontSize: 10,
       );
 
-  static TextStyle get a10700Gray => a10700.copyWith(color: AppColor.gray);
+  static TextStyle get a10700Gray =>
+      a10700.copyWith(color: AppColor.cardSlected);
 
   static TextStyle get a12400 => a.copyWith(
         fontWeight: FontWeight.w400,
         fontSize: 12,
       );
 
-  static TextStyle get a12400Gray => a12400.copyWith(color: AppColor.gray);
+  static TextStyle get a12400Gray =>
+      a12400.copyWith(color: AppColor.cardSlected);
 
   static TextStyle get a12500 => a.copyWith(
         fontWeight: FontWeight.w500,
@@ -351,12 +352,14 @@ class AppTextStyle {
         fontSize: 12,
       );
 
-  static TextStyle get a12700Gray => a12700.copyWith(color: AppColor.gray);
+  static TextStyle get a12700Gray =>
+      a12700.copyWith(color: AppColor.cardSlected);
 
   static TextStyle get a14400 =>
       a.copyWith(fontWeight: FontWeight.w400, fontSize: 14);
 
-  static TextStyle get a14400Gray => a14400.copyWith(color: AppColor.gray);
+  static TextStyle get a14400Gray =>
+      a14400.copyWith(color: AppColor.cardSlected);
 
   static TextStyle get a14500 =>
       a.copyWith(fontWeight: FontWeight.w500, fontSize: 14);
@@ -367,7 +370,7 @@ class AppTextStyle {
   static TextStyle get a14700Gray => a.copyWith(
         fontWeight: FontWeight.w700,
         fontSize: 14,
-        color: AppColor.gray,
+        color: AppColor.cardSlected,
       );
 
   static TextStyle get a16400 =>
@@ -375,7 +378,6 @@ class AppTextStyle {
 
   static TextStyle get a16500 =>
       a.copyWith(fontWeight: FontWeight.w500, fontSize: 16);
-
 
   static TextStyle get a16600 =>
       a.copyWith(fontWeight: FontWeight.w600, fontSize: 16);
@@ -453,8 +455,6 @@ class AppTextStyle {
       );
 
   static TextStyle get a16700Accent => a16700.copyWith(color: AppColor.primary);
-
- 
 
   static TextStyle a12400DarkBackground(BuildContext context) =>
       a12400.copyWith(

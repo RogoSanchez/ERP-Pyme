@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pyme_erp/features/login/Presentation/bloc/login_bloc/login_bloc.dart';
 
 class UsernameInput extends StatelessWidget {
-      final FocusNode focusNode;
+  final FocusNode focusNode;
 
   const UsernameInput({super.key, required this.focusNode});
 
@@ -22,11 +22,11 @@ class UsernameInput extends StatelessWidget {
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.white,
-        
+
         labelStyle: TextStyle(color: Colors.black, fontSize: 20),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
         labelText: 'Correo Electrónico',
-        errorText: displayError != null ? 'invalid username' : null,
+        errorText: displayError != null ? 'correo inválido' : null,
       ),
     );
   }

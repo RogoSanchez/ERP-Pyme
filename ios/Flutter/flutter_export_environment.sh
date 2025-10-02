@@ -1,6 +1,6 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/home/rogo/flutter_sdk"
+export "FLUTTER_ROOT=/flutter_sdk"
 export "FLUTTER_APPLICATION_PATH=/home/rogo/Programming/Flutter Projects/Pyme-ERP"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib/main.dart"

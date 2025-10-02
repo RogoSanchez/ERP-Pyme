@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pyme_erp/config/go_router/router.dart';
 import 'package:pyme_erp/domain/di/di.dart';
+import 'package:pyme_erp/features/human_resources/employees/data/datasources/implements/employee_repository_implements.dart';
 import 'package:pyme_erp/features/human_resources/employees/Presentation/blocs/employeeEdit/employee_edit_bloc.dart';
 import 'package:pyme_erp/features/human_resources/employees/Presentation/blocs/employeesBloc/employees_bloc.dart';
 import 'package:pyme_erp/config/Themes/app_color.dart';
@@ -16,25 +17,28 @@ class ERP extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authenticationRepository = AuthenticationRepository();
-    final userRepository = UserRepository();
-
     return ScreenUtilInit(
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) =>
-                LoginBloc(authenticationRepository: authenticationRepository),
+            create: (context) => LoginBloc(
+              authenticationRepository: DI.get<AuthenticationRepository>(),
+            ),
           ),
           BlocProvider(
             create: (context) => AuthBloc(
-              authenticationRepository: authenticationRepository,
-              userRepository: userRepository,
+              authenticationRepository: DI.get<AuthenticationRepository>(),
+              userRepository: DI.get<UserRepository>(),
             ),
           ),
-          BlocProvider(create: (context) => EmployeesBloc()),
           BlocProvider(
-            create: (context) => EmployeeEditBloc(employeeRepository),
+            create: (context) => EmployeesBloc(
+              employeeRepository: DI.get<EmployeeRepositoryI>(),
+            ),
+          ),
+          BlocProvider(
+            create: (context) =>
+                EmployeeEditBloc(DI.get<EmployeeRepositoryI>()),
           ),
         ],
         child: Builder(

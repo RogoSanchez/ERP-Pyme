@@ -26,7 +26,7 @@ class PasswordInput extends StatelessWidget {
         fillColor: Colors.white,
         labelStyle: TextStyle(color: Colors.black, fontSize: 20),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
-        errorText: displayError != null ? 'invalid password' : null,
+        errorText: displayError != null ? 'Contraseña inválida' : null,
       ),
     );
   }

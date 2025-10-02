@@ -9,14 +9,16 @@ part 'employees_state.dart';
 part 'employees_bloc.freezed.dart';
 
 class EmployeesBloc extends Bloc<EmployeesEvent, EmployeesState> {
-  EmployeesBloc() : super(EmployeesState.initial()) {
+  final EmployeeRepositoryI _employeeRepository;
+
+  EmployeesBloc({required EmployeeRepositoryI employeeRepository})
+    : _employeeRepository = employeeRepository,
+      super(EmployeesState.initial()) {
     on<_GetAll>((event, emit) async {
       try {
         emit(Loading());
         employees = await getEmployees();
-        employees.sort(
-          (a, b) => (a.name.toLowerCase().compareTo(b.name.toLowerCase())),
-        );
+        SortEmployees();
         await SelectedListToFalse();
 
         emit(Loaded(employees));
@@ -25,10 +27,8 @@ class EmployeesBloc extends Bloc<EmployeesEvent, EmployeesState> {
       }
     });
     on<_Search>((event, emit) async {
-      employees = await employeeRepository.FetchEmployeesByName(event.name);
-      employees.sort(
-        (a, b) => (a.name.codeUnitAt(0).compareTo(b.name.codeUnitAt(0))),
-      );
+      employees = await _employeeRepository.FetchEmployeesByName(event.name);
+      SortEmployees();
       emit(Loading());
       emit(Searching(employees));
     });
@@ -51,30 +51,35 @@ class EmployeesBloc extends Bloc<EmployeesEvent, EmployeesState> {
       await DeleteEmployee();
       try {
         employees = await getEmployees();
-        employees.sort(
-          (a, b) => (a.name.codeUnitAt(0).compareTo(b.name.codeUnitAt(0))),
-        );
+        SortEmployees();
         SelectedListToFalse();
         emit(Loaded(employees));
-      } catch (e) {}
+      } catch (e) {
+        debugPrint(e.toString());
+      }
     });
   }
 
-  EmployeeRepositoryI employeeRepository = EmployeeRepositoryI();
   List<Employee> employees = [];
   List<bool> selectedCard = [];
 
   Future<List<Employee>> getEmployees() async {
     debugPrint("Fetching Employees");
-    return await employeeRepository.FetchAllEmployee();
+    return await _employeeRepository.FetchAllEmployee();
   }
 
   Future<void> DeleteEmployee() async {
     for (var i = 0; i < selectedCard.length; i++) {
       if (selectedCard[i]) {
-        await employeeRepository.Delete(employees[i].id!);
+        await _employeeRepository.Delete(employees[i].id!);
       }
     }
+  }
+
+  Future<void> SortEmployees() async {
+    employees.sort(
+      (a, b) => (a.name.toLowerCase().compareTo(b.name.toLowerCase())),
+    );
   }
 
   Future<void> SelectedListToFalse() async {

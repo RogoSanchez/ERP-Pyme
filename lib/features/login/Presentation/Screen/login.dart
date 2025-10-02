@@ -1,7 +1,7 @@
 import 'package:app_theme/ui/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:pyme_erp/features/login/Presentation/widgets/login_tab.dart';
-import 'package:pyme_erp/features/login/Presentation/widgets/signup_widget.dart';
+import 'package:pyme_erp/features/login/Presentation/widgets/signup_tab.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -57,7 +57,7 @@ class LoginScreen extends StatelessWidget {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         stops: <double>[0.0, 1],
-                        colors: <Color>[AppColor.celeste, AppColor.blue],
+                        colors: <Color>[AppColor.secondary, AppColor.blue],
                       ),
                     ),
                     child: TabBarView(
