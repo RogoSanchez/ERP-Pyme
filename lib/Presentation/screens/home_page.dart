@@ -2,8 +2,7 @@ import 'package:app_theme/ui/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pyme_erp/features/login/Presentation/bloc/auth_bloc/auth_bloc.dart';
-import 'package:pyme_erp/features/login/Presentation/bloc/login_bloc/login_bloc.dart';
+import 'package:login/Presentation/bloc/auth_bloc/auth_bloc.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

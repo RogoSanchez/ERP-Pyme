@@ -1,0 +1,65 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Pyme-ERP",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "Pyme-ERP (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "Pyme-ERP (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "app_theme",
+            "cwd": "packages/app_theme",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "app_theme (profile mode)",
+            "cwd": "packages/app_theme",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "app_theme (release mode)",
+            "cwd": "packages/app_theme",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "login",
+            "cwd": "packages/login",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "login (profile mode)",
+            "cwd": "packages/login",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "login (release mode)",
+            "cwd": "packages/login",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

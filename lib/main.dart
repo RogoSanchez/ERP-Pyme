@@ -18,6 +18,7 @@ Future<void> main() async {
 
   // Configurar Dependency Injection
   await ServiceLocator.init();
+  
 
   runApp(ERP());
 }

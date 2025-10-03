@@ -1,8 +1,9 @@
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
+import 'package:login/data/repositories/autentication_repository.dart';
+import 'package:login/data/repositories/user_repository.dart';
 import 'package:pyme_erp/features/human_resources/employees/data/datasources/implements/employee_repository_implements.dart';
-import 'package:pyme_erp/features/login/data/repositories/autentication_repository.dart';
-import 'package:pyme_erp/features/login/data/repositories/user_repository.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 /// Service Locator usando GetIt para Dependency Injection
@@ -16,43 +17,37 @@ class ServiceLocator {
   static Future<void> init() async {
     await _registerExternalDependencies();
     _registerRepositories();
-    _registerUseCases();
     _registerBlocs();
+  }
+
+  static GoRouter initRouter(GoRouter router) {
+    return _registerRouter(router);
   }
 
   /// Registra dependencias externas (APIs, bases de datos, etc.)
   static Future<void> _registerExternalDependencies() async {
     // Supabase ya está inicializado en main.dart
     _getIt.registerSingleton<SupabaseClient>(Supabase.instance.client);
-
-    final prefs = await SharedPreferencesWithCache.create(
-    cacheOptions: const SharedPreferencesWithCacheOptions(
-      // Opcional: configurar filtros para qué cachear
-      allowList: <String>{'username', 'password', 'key', 'darkmode'},
-    ),
-  );
-    _getIt.registerSingleton<SharedPreferencesWithCache>(prefs);
   }
 
   /// Registra todos los repositorios
   static void _registerRepositories() {
     // Repositories como Singletons (una sola instancia en toda la app)
     _getIt.registerSingleton<AuthenticationRepository>(
-      AuthenticationRepository(),
+      AuthenticationRepository(DI.get<SupabaseClient>()),
     );
 
-    _getIt.registerSingleton<UserRepository>(UserRepository());
+    _getIt.registerSingleton<UserRepository>(
+      UserRepository(DI.get<SupabaseClient>()),
+    );
 
     _getIt.registerSingleton<EmployeeRepositoryI>(EmployeeRepositoryI());
   }
 
   /// Registra casos de uso (Use Cases)
-  static void _registerUseCases() {
-    // Aquí puedes registrar use cases cuando los tengas
-    // Ejemplo:
-    // _getIt.registerLazySingleton<GetEmployeesUseCase>(
-    //   () => GetEmployeesUseCase(_getIt<EmployeeRepositoryI>()),
-    // );
+  static GoRouter _registerRouter(GoRouter router) {
+    _getIt.registerSingleton<GoRouter>(router);
+    return router;
   }
 
   /// Registra los BLoCs como Factory (nueva instancia cada vez)
@@ -79,6 +74,7 @@ class DI {
 
 // Getters de acceso rápido (backward compatibility)
 SupabaseClient get supabase => DI.get<SupabaseClient>();
-AuthenticationRepository get authRepository => DI.get<AuthenticationRepository>();
+AuthenticationRepository get authRepository =>
+    DI.get<AuthenticationRepository>();
 UserRepository get userRepository => DI.get<UserRepository>();
 EmployeeRepositoryI get employeeRepository => DI.get<EmployeeRepositoryI>();
